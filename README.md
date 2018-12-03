@@ -1,5 +1,5 @@
 # Snake-Code
- A thread friendly snake game that teaches you how to code! Or doest it?
+ A thread friendly snake game that teaches you how to code! Or does it?
 
  ## Learning haskell graphics
  * Install Haskell Platarform (Actually just Cabal) - https://www.haskell.org/platform/
@@ -15,3 +15,15 @@
 *  http://jxv.io/blog/2018-02-28-A-Game-in-Haskell.html
 *  https://www.youtube.com/watch?v=1MNTerD8IuI
 *  https://lokathor.gitbooks.io/using-haskell/content/opengl/
+
+ ## Develop
+ Right now im using this guide
+ *****
+ https://lokathor.gitbooks.io/using-haskell/content/opengl/hello-window.html
+ *****
+ with this guide
+ ***
+ https://learnopengl.com/Getting-started/Hello-Window
+ ***
+
+ To try and make graphics with haskell. Later i'll do threads.
