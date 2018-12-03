@@ -20,10 +20,10 @@ initialState = Game
     {
         player1 = (-10,30)
     ,   player2 = (0, -3)
-    ,   p1xVel = 5
+    ,   p1xVel = 10
     ,   p1yVel = 0
-    ,   p2yVel = 0
-    ,   p2xVel = 5
+    ,   p2yVel = 10
+    ,   p2xVel = 0
     ,   p1Trace = []
     ,   p2Trace = []
     }
@@ -45,6 +45,9 @@ paddleColor = light (light blue)
 background = white
 fps = 60
 limits = [(0, 150), (0, (-150)), (150, 0), ((-150), 0)]
+
+playerSize :: (Float, Float)
+playerSize = (26, 86)
     
 -- Factories
 wall :: Color -> Float -> Float -> Picture
@@ -52,7 +55,7 @@ wall wallColor x y = translate x y $ color wallColor $ rectangleSolid 270 10
 
 mkPaddle :: Color -> Float -> Float -> Picture
 mkPaddle col x y = pictures
-    [ translate x y $ color col $ rectangleSolid 26 86
+    [ translate x y $ color col $ rectangleSolid (fst playerSize) (snd playerSize)
     , translate x y $ color paddleColor $ rectangleSolid 20 80
     ]
 
@@ -66,10 +69,10 @@ handleKeys :: Event -> TronGame -> TronGame
 handleKeys (EventKey (Char 's') _ _ _) game = Game {
         player1 = (-10,30)
     ,   player2 = (0, -3)
-    ,   p1xVel = 5
+    ,   p1xVel = 10
     ,   p1yVel = 0
-    ,   p2yVel = 0
-    ,   p2xVel = 5
+    ,   p2yVel = 10
+    ,   p2xVel = 0
     ,   p1Trace = []
     ,   p2Trace = []
     }
@@ -84,11 +87,11 @@ wallCollision (objectx, objecty) (width, height) = topCollision || bottomCollisi
     bottomCollision = objecty + ( height/2) >=  150
     leftCollision = objectx - ( width/2) <= -150
     rightCollision = objectx + ( width/2) >= 150
- 
 
+ 
 -- Animations functions
 movePlayer :: Float -> TronGame -> TronGame
-movePlayer sec game = Game {player1 = (p1NewX, p1NewY), player2 = (p2NewX, p2NewY), p1xVel=v1x, p1yVel=v1y, p2xVel=v2x, p2yVel = v2x, p1Trace=p1Tail, p2Trace=p2Tail}
+movePlayer sec game = Game {player1 = (p1NewX, p1NewY), player2 = (p2NewX, p2NewY), p1xVel=v1x, p1yVel=v1y, p2xVel=v2x, p2yVel = v2y, p1Trace=p1Tail, p2Trace=p2Tail}
         where
             (x, y) = player1 game
             (w, u) = player2 game
@@ -105,6 +108,24 @@ movePlayer sec game = Game {player1 = (p1NewX, p1NewY), player2 = (p2NewX, p2New
             trailList2 = p2Trace game
             p2Tail = trailList2 ++ [(w, u)]
 
+
+teleport :: TronGame -> TronGame
+teleport game = game { player1 = np1, player2 = np2 }
+    where
+        n@(p1x, p1y) = player1 game
+        m@(p2x, p2y) = player2 game   
+        np1 = if wallCollision n (26, 86)
+              then
+                    (-10, 30)
+               else
+                    (n)
+        np2 = if wallCollision m (26, 86)
+                then
+                    (0, -3)
+                else
+                    (m)
+
+
 ------------------------------------------------------------
 
 window :: Display
@@ -114,4 +135,4 @@ main :: IO ()
 main = play window background fps initialState render handleKeys update
 
 update :: Float -> TronGame -> TronGame 
-update = movePlayer
+update seconds = teleport . movePlayer seconds
