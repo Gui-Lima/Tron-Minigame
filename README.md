@@ -1,22 +1,23 @@
-# Snake-Code
- A thread friendly snake game that teaches you how to code! Or does it?
+# Tron Code
+ A thread friendly tron game to stimulate good competion between friends! Also color blind friendly!
 
- ## Learning haskell graphics
+## Learning haskell graphics
  * Install Haskell Platarform (Actually just Cabal) - https://www.haskell.org/platform/
  * Install through Cabal : JuicyPixels, GLFW-b and OpenGL-3.0.2.2
  * This should make you able to run the "HelloWorldWindow.hs" file in graphics folder. Compile it then run main.
 
- ## Learning haskell threads
+## Learning haskell threads
 
- ## The game
+## The game
 
 
- ## The reference
+## The reference
 *  http://jxv.io/blog/2018-02-28-A-Game-in-Haskell.html
 *  https://www.youtube.com/watch?v=1MNTerD8IuI
 *  https://lokathor.gitbooks.io/using-haskell/content/opengl/
 
- ## Develop
+
+## Develop
  Right now im using this guide
  *****
  https://lokathor.gitbooks.io/using-haskell/content/opengl/hello-window.html
@@ -27,3 +28,4 @@
  ***
 
  To try and make graphics with haskell. Later i'll do threads.
+
