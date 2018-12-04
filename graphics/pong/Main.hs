@@ -12,6 +12,8 @@ data TronGame = Game
     , p2yVel :: (Float)
     , p1Trace :: [(Float, Float)]
     , p2Trace ::[(Float, Float)]
+    , p1dead :: Bool
+    , p2dead :: Bool
     } deriving Show
 
 initialState :: TronGame
@@ -21,8 +23,8 @@ initialState = Game
     ,   player2 = initialPoint2
     ,   p1xVel = speed
     ,   p1yVel = 0
-    ,   p2yVel = speed
-    ,   p2xVel = 0
+    ,   p2yVel = 0
+    ,   p2xVel = -speed
     ,   p1Trace = [initialPoint1]
     ,   p2Trace = [initialPoint2]
     }
@@ -43,7 +45,7 @@ render game = pictures [
 background = white
 fps = 20
 limits = [(0, 150), (0, (-150)), (150, 0), ((-150), 0)]
-speed = 30
+speed = 35
 
 playerSize :: (Float, Float)
 playerSize = (10, 10)
@@ -56,7 +58,7 @@ initialPoint2 = (100, 0)
 
 -- Factories
 wall :: Color -> Float -> Float -> Picture
-wall wallColor x y = translate x y $ color wallColor $ rectangleSolid 270 10
+wall wallColor x y = translate x y $ color wallColor $ rectangleSolid 400 10
 
 mkPaddle :: Color -> Float -> Float -> Picture
 mkPaddle col x y = pictures
@@ -84,10 +86,10 @@ handleKeys :: Event -> TronGame -> TronGame
 handleKeys (EventKey (Char 'r') _ _ _) game = Game {
         player1 = initialPoint1
     ,   player2 = initialPoint2
-    ,   p1xVel = 10
+    ,   p1xVel = speed
     ,   p1yVel = 0
-    ,   p2yVel = 10
-    ,   p2xVel = 0
+    ,   p2yVel = 0
+    ,   p2xVel = -speed
     ,   p1Trace = [initialPoint1]
     ,   p2Trace = [initialPoint2]
     }
@@ -184,8 +186,18 @@ wallCollision (objectx, objecty) (width, height) = topCollision || bottomCollisi
     rightCollision = objectx + ( width/2) >= 150
 
 lineCollision :: [(Float, Float)] -> (Float, Float) -> Bool
-lineCollision l a = elem a l
-
+lineCollision [] _ = False
+lineCollision n@((x,y):(x1,y1):z) (u,v) = if x-x1/=0 then
+                                            if y+0.10>v && y-0.10<v then
+                                                True 
+                                            else
+                                                False
+                                        else
+                                            if x+0.10>u && x-0.10<u then
+                                                True 
+                                            else
+                                                False
+lineCollision _ _ = False
  
 -- Animations functions
 movePlayer :: Float -> TronGame -> TronGame
@@ -205,31 +217,45 @@ movePlayer sec game = Game {player1 = (p1NewX, p1NewY), player2 = (p2NewX, p2New
             trailList2 = p2Trace game
 
 
-teleport :: TronGame -> TronGame
-teleport game = game { player1 = np1, player2 = np2 }
+die :: TronGame -> TronGame
+die game = game {p1dead = dead1, p2dead = dead2 }
     where
         n@(p1x, p1y) = player1 game
         m@(p2x, p2y) = player2 game   
-        np1 = if wallCollision n playerSize || lineCollision (p2Trace game) n
+        dead1 = if wallCollision n playerSize || lineCollision (p2Trace game) n || lineCollision (p1Trace game) n
               then
-                    (-10, 30)
+                    True
                else
-                    (n)
-        np2 = if wallCollision m playerSize || lineCollision (p1Trace game) m
+                    False
+        dead2 = if wallCollision m playerSize || lineCollision (p1Trace game) m || lineCollision (p2Trace game) m
                 then
-                    (0, -3)
+                    True
                 else
-                    (m)
+                    False
+
+endRound :: TronGame -> TronGame
+endRound game = if (p1dead game) || (p2dead game) then Game {
+        player1 = player1 game
+    ,   player2 = player2 game
+    ,   p1xVel = 0
+    ,   p1yVel = 0
+    ,   p2yVel = 0
+    ,   p2xVel = 0
+    ,   p1Trace = (player1 game) : p1Trace game
+    ,   p2Trace = (player2 game) : p2Trace game
+    }
+    else
+        game
 
 
 
 ------------------------------------------------------------
 
 window :: Display
-window = InWindow "Nice Window" (800, 800) (10, 10)
+window = InWindow "TRoN" (800, 800) (10, 10)
 
 main :: IO ()
 main = play window background fps initialState render handleKeys update
 
 update :: Float -> TronGame -> TronGame 
-update seconds = teleport . movePlayer seconds
+update seconds = endRound . die . movePlayer seconds
