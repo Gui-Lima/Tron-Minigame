@@ -4,10 +4,10 @@ module TronGame where
     import Map
 
     initialPoint1 :: Position
-    initialPoint1 = (1,3)
+    initialPoint1 = (15,15)
 
     initialPoint2 :: Position
-    initialPoint2 = (3,1)
+    initialPoint2 = (1,1)
 
     initialSpeed :: Int
     initialSpeed = 1
@@ -34,8 +34,8 @@ module TronGame where
         ,   player2 = initialPoint2
         ,   p1xVel = -initialSpeed
         ,   p1yVel = 0
+        ,   p2xVel = initialSpeed
         ,   p2yVel = 0
-        ,   p2xVel = -initialSpeed
         ,   p1Trace = [initialPoint1]
         ,   p2Trace = [initialPoint2]
         ,   p1dead = False

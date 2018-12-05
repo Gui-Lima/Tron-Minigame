@@ -11,7 +11,7 @@ module Actions where
                                     tronMap = newMap
                                 ,   player1 = p1NewPos
                                 ,   player2 = p2NewPos
-                                ,   p1xVel = p1xVel game
+                                ,   p1xVel  = p1xVel game
                                 ,   p1yVel  = p1yVel game
                                 ,   p2xVel  = p2xVel game
                                 ,   p2yVel  = p2yVel game
