@@ -1,13 +1,14 @@
 module TronGame where
     import Graphics.Gloss
     import Types
+    import MapFunctions
     import Map
 
     initialPoint1 :: Position
-    initialPoint1 = (15,15)
+    initialPoint1 = (7,7)
 
     initialPoint2 :: Position
-    initialPoint2 = (1,1)
+    initialPoint2 = (15,15)
 
     initialSpeed :: Int
     initialSpeed = 1
@@ -32,9 +33,9 @@ module TronGame where
             tronMap = initialMapStruct
         ,   player1 = initialPoint1
         ,   player2 = initialPoint2
-        ,   p1xVel = -initialSpeed
+        ,   p1xVel =  initialSpeed
         ,   p1yVel = 0
-        ,   p2xVel = initialSpeed
+        ,   p2xVel = -initialSpeed
         ,   p2yVel = 0
         ,   p1Trace = [initialPoint1]
         ,   p2Trace = [initialPoint2]

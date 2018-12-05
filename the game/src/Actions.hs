@@ -3,6 +3,7 @@ module Actions where
     import Graphics.Gloss
     import TronGame
     import Map
+    import MapFunctions
     import Events
 
 
@@ -23,8 +24,8 @@ module Actions where
                                 where
                                     (x,y) = player1 game
                                     (u,v) = player2 game
-                                    (p1movementX, p1movementY) =  ((x + (floor (sec * (fromIntegral (p1xVel game) )))) , (y+ (floor (sec * (fromIntegral (p1yVel game))))))
-                                    (p2movementX, p2movementY) =  ((u + (floor (sec * (fromIntegral (p2xVel game) )))) , (v+ (floor (sec * (fromIntegral (p2yVel game))))))
+                                    (p1movementX, p1movementY) =  ((x + (floor (sec * (fromIntegral (p1xVel game) )))) , (y + (floor (sec * (fromIntegral (p1yVel game))))))
+                                    (p2movementX, p2movementY) =  ((u + (floor (sec * (fromIntegral (p2xVel game) )))) , (v + (floor (sec * (fromIntegral (p2yVel game))))))
                                     p1NewPos = if possibleMovement (p1movementX, p1movementY)  (tronMap game)
                                                         then
                                                             (p1movementX, p1movementY)
@@ -45,6 +46,4 @@ module Actions where
                                                             False
                                                         else
                                                             True
-                                    newMap = setPossiblesInPositions  (tronMap game) [(player1 game), (player2 game), p1NewPos, p2NewPos] [Nada, Nada, Player, Player]
-                                    
-                                            
+                                    newMap = setPossiblesInPositions  (tronMap game) [(player1 game), (player2 game), p1NewPos, p2NewPos] [Trace, Trace, Player, Player]

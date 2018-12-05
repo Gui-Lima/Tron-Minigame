@@ -1,7 +1,7 @@
 module Main(main) where
 import Graphics.Gloss
 import Graphics.Gloss.Interface.Pure.Game
-import Map
+import MapFunctions
 import Actions
 import TronGame
 import HandleKeys

@@ -1,5 +1,6 @@
 module Events where
     import Types
+    import MapFunctions
     import Map
     import Graphics.Gloss
 
