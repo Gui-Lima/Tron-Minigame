@@ -44,7 +44,7 @@ module Map where
 
                      
     getPoint :: (Int, Int) -> (Float, Float)
-    getPoint (x,y) = ((fromIntegral x)*10-5, 150 - (fromIntegral y)*10-5)
+    getPoint (x,y) = ((fromIntegral x)*10-5, 150 - (fromIntegral y-1)*10+5)
 
     getPossible :: Map -> Position -> Possible
     getPossible n (x,y) = (n !!  x) !! y

@@ -32,7 +32,7 @@ module TronGame where
             tronMap = initialMapStruct
         ,   player1 = initialPoint1
         ,   player2 = initialPoint2
-        ,   p1xVel = initialSpeed
+        ,   p1xVel = -initialSpeed
         ,   p1yVel = 0
         ,   p2yVel = 0
         ,   p2xVel = -initialSpeed
