@@ -1,11 +1,11 @@
 module Types where
-    type Wall = (Float, Float)
-    type Player = (Float, Float)
-    type PowerUp = (Float, Float)
-    type Trace = (Float, Float)
-    type Nada = (Float, Float)
-    type Position = (Float, Float)
+    type Wall = (Int, Int)
+    type Player = (Int, Int)
+    type PowerUp = (Int, Int)
+    type Trace = (Int, Int)
+    type Nada = (Int, Int)
+    type Position = (Int, Int)
     type Map = [[Possible]]
     type CoordMap = [[Position]]
 
-    data Possible = Wall | Player | PowerUp | Trace | Nada
+    data Possible = Wall | Player | PowerUp | Trace | Nada deriving (Eq, Show)

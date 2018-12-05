@@ -6,7 +6,6 @@ module Map where
     initialMapStruct =   [
                          [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall],
                          [Wall, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Wall],
-                         [Wall, Nada, Nada, Player, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Wall],
                          [Wall, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Wall],
                          [Wall, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Wall],
                          [Wall, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Wall],
@@ -17,7 +16,8 @@ module Map where
                          [Wall, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Wall],
                          [Wall, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Wall],
                          [Wall, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Wall],
-                         [Wall, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Player, Nada, Nada, Wall],
+                         [Wall, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Wall],
+                         [Wall, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Wall],
                          [Wall, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Nada, Wall],
                          [Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall, Wall]
                          ]
@@ -43,14 +43,25 @@ module Map where
                  ]
 
                      
-    getPoint :: (Float, Float) -> (Float, Float)
-    getPoint (x,y) = (x*10+5, y*10+5)
+    getPoint :: (Int, Int) -> (Float, Float)
+    getPoint (x,y) = ((fromIntegral x)*10-5, 150 - (fromIntegral y)*10-5)
 
     getPossible :: Map -> Position -> Possible
-    getPossible n (x,y) = (n !! (round x)) !! (round y)
+    getPossible n (x,y) = (n !!  x) !! y
 
-    getMap :: Picture
-    getMap = renderMap initialMapStruct mapCoords
+    getMap :: Map -> Picture
+    getMap map = renderMap map mapCoords
+
+    setPossiblesInPositions :: Map -> [Position] -> [Possible] -> Map
+    setPossiblesInPositions m [] _ = m
+    setPossiblesInPositions m pos@(x:xs) pob@(y:ys) = setPossiblesInPositions (setPossibleInPosition m x y) xs ys
+
+    setPossibleInPosition :: Map -> Position -> Possible -> Map
+    setPossibleInPosition map (x,y) p = take x map ++ [newList] ++ drop (x + 1) map
+            where
+                n = y
+                xs = map !! x
+                newList = take n xs ++ [p] ++ drop (n + 1) xs
 
     renderMap :: Map -> CoordMap -> Picture
     renderMap [] _ = Pictures []

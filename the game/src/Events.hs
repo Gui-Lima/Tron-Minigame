@@ -17,3 +17,6 @@ module Events where
                                             True
                                         else
                                             False
+
+    possibleMovement :: Position -> Map -> Bool
+    possibleMovement x m= not (wallCollision x m || traceCollision x m)
