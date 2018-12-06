@@ -30,7 +30,7 @@ module TronGame where
     initialState :: TronGame
     initialState = Game
         {
-            tronMap = initialMapStruct
+            tronMap = obstacleMap
         ,   player1 = initialPoint1
         ,   player2 = initialPoint2
         ,   p1xVel =  initialSpeed
