@@ -24,8 +24,8 @@ module Actions where
                                 where
                                     (x,y) = player1 game
                                     (u,v) = player2 game
-                                    (p1movementX, p1movementY) =  ((x + (floor (sec * (fromIntegral (p1xVel game) )))) , (y + (floor (sec * (fromIntegral (p1yVel game))))))
-                                    (p2movementX, p2movementY) =  ((u + (floor (sec * (fromIntegral (p2xVel game) )))) , (v + (floor (sec * (fromIntegral (p2yVel game))))))
+                                    (p1movementX, p1movementY) =  ((x + (floor ((fromIntegral (p1xVel game) )))) , (y + (floor ((fromIntegral (p1yVel game))))))
+                                    (p2movementX, p2movementY) =  ((u + (floor ((fromIntegral (p2xVel game) )))) , (v + (floor ((fromIntegral (p2yVel game))))))
                                     p1NewPos = if possibleMovement (p1movementX, p1movementY)  (tronMap game)
                                                         then
                                                             (p1movementX, p1movementY)

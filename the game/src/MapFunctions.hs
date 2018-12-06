@@ -28,10 +28,10 @@ module MapFunctions where
     setPossiblesInPositions m pos@(x:xs) pob@(y:ys) = setPossiblesInPositions (setPossibleInPosition m x y) xs ys
 
     setPossibleInPosition :: Map -> Position -> Possible -> Map
-    setPossibleInPosition map (x,y) p = take x map ++ [newList] ++ drop (x + 1) map
+    setPossibleInPosition map (x,y) p = take y map ++ [newList] ++ drop (y + 1) map
             where
-                n = y
-                xs = map !! x
+                n = x
+                xs = map !! y
                 newList = take n xs ++ [p] ++ drop (n + 1) xs
     
     renderMap :: Map -> CoordMap -> Picture
