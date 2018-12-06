@@ -12,10 +12,10 @@ background = white
 
 
 window :: Display
-window = InWindow "TRoN" (600, 600) (10, 10)
+window = InWindow "TRoN" (1280, 720) (10, 10)
 
 main :: IO ()
 main = play window background fps initialState render handleKeys update
 
 update :: Float -> TronGame -> TronGame 
-update seconds game = movePlayer seconds game
+update _ game = movePlayer game

@@ -1,4 +1,4 @@
-size = 50
+size = 70
 map = "["
 
 for i in range(size):

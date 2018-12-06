@@ -13,11 +13,18 @@ module Events where
                                             False
 
     traceCollision :: Position -> Map -> Bool
-    traceCollision pos map = if getPossible map pos == Trace
+    traceCollision pos map = if getPossible map pos == Trace1 || getPossible map pos == Trace2
+                                        then
+                                            True
+                                        else
+                                            False
+
+    playerCollision :: Position -> Map -> Bool
+    playerCollision pos map = if getPossible map pos == Player1 || getPossible map pos == Player2
                                         then
                                             True
                                         else
                                             False
 
     possibleMovement :: Position -> Map -> Bool
-    possibleMovement x m= not (wallCollision x m || traceCollision x m)
+    possibleMovement x m = not (wallCollision x m || traceCollision x m || playerCollision x m)

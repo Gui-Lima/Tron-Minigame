@@ -8,7 +8,7 @@ module TronGame where
     initialPoint1 = (1,1)
 
     initialPoint2 :: Position
-    initialPoint2 = (48,48)
+    initialPoint2 = (68,68)
 
     initialSpeed :: Int
     initialSpeed = 1
@@ -34,9 +34,9 @@ module TronGame where
         ,   player1 = initialPoint1
         ,   player2 = initialPoint2
         ,   p1xVel =  initialSpeed
-        ,   p1yVel = initialSpeed
+        ,   p1yVel = 0
         ,   p2xVel = -initialSpeed
-        ,   p2yVel = -initialSpeed
+        ,   p2yVel = 0
         ,   p1Trace = [initialPoint1]
         ,   p2Trace = [initialPoint2]
         ,   p1dead = False

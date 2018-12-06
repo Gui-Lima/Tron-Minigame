@@ -6,9 +6,8 @@ module Actions where
     import MapFunctions
     import Events
 
-
-    movePlayer :: Float -> TronGame -> TronGame
-    movePlayer sec game = Game {
+    movePlayer :: TronGame -> TronGame
+    movePlayer game = Game {
                                     tronMap = newMap
                                 ,   player1 = p1NewPos
                                 ,   player2 = p2NewPos
@@ -24,18 +23,18 @@ module Actions where
                                 where
                                     (x,y) = player1 game
                                     (u,v) = player2 game
-                                    (p1movementX, p1movementY) =  ((x + (floor ((fromIntegral (p1xVel game) )))) , (y + (floor ((fromIntegral (p1yVel game))))))
-                                    (p2movementX, p2movementY) =  ((u + (floor ((fromIntegral (p2xVel game) )))) , (v + (floor ((fromIntegral (p2yVel game))))))
+                                    (p1movementX, p1movementY) =  ((x + p1xVel game)  , (y + p1yVel game))
+                                    (p2movementX, p2movementY) =  ((u + p2xVel game)  , (v + p2yVel game))
                                     p1NewPos = if possibleMovement (p1movementX, p1movementY)  (tronMap game)
                                                         then
                                                             (p1movementX, p1movementY)
                                                         else
-                                                            player1 game
+                                                            (x, y)
                                     p2NewPos = if possibleMovement (p2movementX, p2movementY) (tronMap game)
                                                         then
                                                             (p2movementX, p2movementY)
                                                         else
-                                                            player2 game
+                                                            (u, v)
                                     newStatus1 = if possibleMovement (p1movementX, p1movementY) (tronMap game)
                                                         then
                                                             False
@@ -46,4 +45,4 @@ module Actions where
                                                             False
                                                         else
                                                             True
-                                    newMap = setPossiblesInPositions  (tronMap game) [(player1 game), (player2 game), p1NewPos, p2NewPos] [Trace, Trace, Player, Player]
+                                    newMap = setPossiblesInPositions  (tronMap game) [(player1 game), (player2 game), p1NewPos, p2NewPos] [Trace1, Trace2, Player1, Player2]

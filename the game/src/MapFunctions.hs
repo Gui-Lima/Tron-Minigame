@@ -18,7 +18,7 @@ module MapFunctions where
 
 
     getPossible :: Map -> Position -> Possible
-    getPossible n (x,y) = (n !!  x) !! y
+    getPossible n (x,y) = (n !!  y) !! x
 
     getMap :: Map -> Picture
     getMap map = renderMap map mapCoords
@@ -44,6 +44,8 @@ module MapFunctions where
 
     paint :: Possible -> Position -> Picture
     paint Nada (x,y) = Pictures []
-    paint Trace (x,y) = Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $ color red $ rectangleSolid 10 10]
-    paint Wall (x,y)= Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $ color black $ rectangleSolid 10 10]
-    paint Player (x,y)= Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $ color blue $ rectangleSolid 10 10]
+    paint Trace1 (x,y) = Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $ color blue $ rectangleSolid 10 10]
+    paint Trace2 (x,y) = Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $ color red $ rectangleSolid 10 10]
+    paint Wall (x,y)= Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $  color black $ rectangleSolid 10 10]
+    paint Player1 (x,y)= Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $  color (light blue) $ rectangleSolid 10 10]
+    paint Player2 (x,y) = Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $  color (light red) $ rectangleSolid 10 10]
