@@ -6,12 +6,16 @@ module MapFunctions where
     
 
     getPoint :: (Int, Int) -> (Float, Float)
-    getPoint (x,y) = ( (floatedX*floatedGridSize)-(floatedGridSize/2) ,  offset - (floatedY*floatedGridSize) - (floatedGridSize/2) )
+    getPoint (x,y) = (-const + offsetX, const - offsetY)
         where
+            floatedMapSize = fromIntegral mapSize
+            floatedGridSize = fromIntegral gridSize
             floatedX = fromIntegral x
             floatedY = fromIntegral y
-            offset = floatedGridSize * (fromIntegral mapSize)
-            floatedGridSize = fromIntegral gridSize
+            const = ((floatedMapSize * floatedGridSize)/2) - (floatedGridSize/2)
+            offsetX = floatedX * floatedGridSize
+            offsetY = floatedY * floatedGridSize
+
 
     getPossible :: Map -> Position -> Possible
     getPossible n (x,y) = (n !!  x) !! y

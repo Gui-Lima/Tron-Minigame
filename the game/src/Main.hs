@@ -12,7 +12,7 @@ background = white
 
 
 window :: Display
-window = InWindow "TRoN" (500, 500) (150, 150)
+window = InWindow "TRoN" (600, 600) (10, 10)
 
 main :: IO ()
 main = play window background fps initialState render handleKeys update
