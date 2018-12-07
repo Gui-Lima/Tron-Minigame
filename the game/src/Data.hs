@@ -41,6 +41,7 @@ module Data where
         ,   p1dead = False
         ,   p2dead = False
         ,   rules = 2
+        ,   gameIsOver = 0
         }
 
     map1State :: TronGame
@@ -54,11 +55,12 @@ module Data where
         ,   p1yVel = 0
         ,   p2xVel = -initialSpeed
         ,   p2yVel = 0
-        ,   p1Trace = [initialPointMap1Player1]
-        ,   p2Trace = [initialPointMap1Player2]
+        ,   p1Trace = [initialPointMap2Player1]
+        ,   p2Trace = [initialPointMap2Player2]
         ,   p1dead = False
         ,   p2dead = False
         ,   rules = 1
+        ,   gameIsOver = 0
         }
 
     map2State :: TronGame
@@ -72,9 +74,30 @@ module Data where
         ,   p1yVel = 0
         ,   p2xVel = -initialSpeed
         ,   p2yVel = 0
-        ,   p1Trace = [initialPointMap1Player1]
-        ,   p2Trace = [initialPointMap1Player2]
+        ,   p1Trace = [initialPointMap3Player1]
+        ,   p2Trace = [initialPointMap3Player2]
         ,   p1dead = False
         ,   p2dead = False
         ,   rules = 1
+        ,   gameIsOver = 0
+        } 
+
+
+    map3State :: TronGame
+    map3State = Game
+        {
+            tronMap = teleportMap
+        ,   mapId = 3
+        ,   player1 = initialPointMap3Player1
+        ,   player2 = initialPointMap3Player2
+        ,   p1xVel =  initialSpeed
+        ,   p1yVel = 0
+        ,   p2xVel = -initialSpeed
+        ,   p2yVel = 0
+        ,   p1Trace = [initialPointMap3Player1]
+        ,   p2Trace = [initialPointMap3Player2]
+        ,   p1dead = False
+        ,   p2dead = False
+        ,   rules = 1
+        ,   gameIsOver = 0
         } 

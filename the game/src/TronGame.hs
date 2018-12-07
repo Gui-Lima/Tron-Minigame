@@ -18,6 +18,7 @@ module TronGame where
         , p1dead :: Bool
         , p2dead :: Bool
         , rules :: Int
+        , gameIsOver :: Int
         } deriving (Show)
 
 

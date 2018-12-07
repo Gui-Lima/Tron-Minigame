@@ -19,7 +19,7 @@ main :: IO ()
 main = play window background fps initialState render handleKeys update
 
 update :: Float -> TronGame -> TronGame 
-update _ game = menuTeleport $ movePlayer game
+update _ game = endGame $ menuTeleport $ movePlayer game
 
 render :: TronGame -> Picture
 render game = Pictures [getMap (tronMap game), writeWinner game, writeMenu game]

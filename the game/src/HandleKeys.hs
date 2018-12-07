@@ -25,6 +25,7 @@ module HandleKeys where
                                                             ,   p1dead = p1dead game
                                                             ,   p2dead = p2dead game
                                                             ,   rules = rules game
+                                                            ,   gameIsOver = gameIsOver game
                                                             }
                                                         else
                                                             if p1dead game && p2dead game
@@ -43,6 +44,7 @@ module HandleKeys where
                                                                     ,   p1dead = p1dead game
                                                                     ,   p2dead = p2dead game
                                                                     ,   rules = rules game
+                                                                    ,   gameIsOver = gameIsOver game
                                                                     }
                                                                 else
                                                                     Game {
@@ -59,6 +61,7 @@ module HandleKeys where
                                                                     ,   p1dead = p1dead game
                                                                     ,   p2dead = p2dead game
                                                                     ,   rules = rules game
+                                                                    ,   gameIsOver = gameIsOver game
                                                                     }
 
     handleKeys (EventKey (Char 'd') _ _ _) game = if p1dead game && not (p2dead game)
@@ -77,6 +80,7 @@ module HandleKeys where
                                                             ,   p1dead = p1dead game
                                                             ,   p2dead = p2dead game
                                                             ,   rules = rules game
+                                                            ,   gameIsOver = gameIsOver game
                                                             }
                                                         else
                                                            if p1dead game && p2dead game
@@ -95,6 +99,7 @@ module HandleKeys where
                                                                     ,   p1dead = p1dead game
                                                                     ,   p2dead = p2dead game
                                                                     ,   rules = rules game
+                                                                    ,   gameIsOver = gameIsOver game
                                                                     }
                                                                 else
                                                                     Game {
@@ -111,6 +116,7 @@ module HandleKeys where
                                                                     ,   p1dead = p1dead game
                                                                     ,   p2dead = p2dead game
                                                                     ,   rules = rules game
+                                                                    ,   gameIsOver = gameIsOver game
                                                                     }
 
     handleKeys (EventKey (Char 'a') _ _ _) game = if p1dead game && not (p2dead game)
@@ -129,6 +135,7 @@ module HandleKeys where
                                                             ,   p1dead = p1dead game
                                                             ,   p2dead = p2dead game
                                                             ,   rules = rules game
+                                                            ,   gameIsOver = gameIsOver game
                                                             }
                                                         else
                                                             if p1dead game && p2dead game
@@ -147,6 +154,7 @@ module HandleKeys where
                                                                     ,   p1dead = p1dead game
                                                                     ,   p2dead = p2dead game
                                                                     ,   rules = rules game
+                                                                    ,   gameIsOver = gameIsOver game
                                                                     }
                                                                 else
                                                                     Game {
@@ -163,6 +171,7 @@ module HandleKeys where
                                                                     ,   p1dead = p1dead game
                                                                     ,   p2dead = p2dead game
                                                                     ,   rules = rules game
+                                                                    ,   gameIsOver = gameIsOver game
                                                                     }
 
     handleKeys (EventKey (SpecialKey KeyUp) _ _ _) game = if p2dead game && not (p1dead game)
@@ -181,6 +190,7 @@ module HandleKeys where
                                                                     ,   p1dead = p1dead game
                                                                     ,   p2dead = p2dead game
                                                                     ,   rules = rules game
+                                                                    ,   gameIsOver = gameIsOver game
                                                                     }
                                                                 else
                                                                     if p1dead game && p2dead game
@@ -199,6 +209,7 @@ module HandleKeys where
                                                                             ,   p1dead = p1dead game
                                                                             ,   p2dead = p2dead game
                                                                             ,   rules = rules game
+                                                                            ,   gameIsOver = gameIsOver game
                                                                             }
                                                                         else
                                                                             Game {
@@ -215,6 +226,7 @@ module HandleKeys where
                                                                             ,   p1dead = p1dead game
                                                                             ,   p2dead = p2dead game
                                                                             ,   rules = rules game
+                                                                            ,   gameIsOver = gameIsOver game
                                                                             }
         
     handleKeys (EventKey (SpecialKey KeyDown) _ _ _) game = if p2dead game && not (p1dead game)
@@ -233,6 +245,7 @@ module HandleKeys where
                                                                     ,   p1dead = p1dead game
                                                                     ,   p2dead = p2dead game
                                                                     ,   rules = rules game
+                                                                    ,   gameIsOver = gameIsOver game
                                                                     }
                                                                 else
                                                                     if p1dead game && p2dead game
@@ -251,6 +264,7 @@ module HandleKeys where
                                                                             ,   p1dead = p1dead game
                                                                             ,   p2dead = p2dead game
                                                                             ,   rules = rules game
+                                                                            ,   gameIsOver = gameIsOver game
                                                                             }
                                                                         else
                                                                             Game {
@@ -267,6 +281,7 @@ module HandleKeys where
                                                                             ,   p1dead = p1dead game
                                                                             ,   p2dead = p2dead game
                                                                             ,   rules = rules game
+                                                                            ,   gameIsOver = gameIsOver game
                                                                             }
         
     handleKeys (EventKey (SpecialKey KeyLeft) _ _ _) game = if p2dead game && not (p1dead game)
@@ -285,6 +300,7 @@ module HandleKeys where
                                                                     ,   p1dead = p1dead game
                                                                     ,   p2dead = p2dead game
                                                                     ,   rules = rules game
+                                                                    ,   gameIsOver = gameIsOver game
                                                                     }
                                                                 else
                                                                     if p1dead game && p2dead game
@@ -303,6 +319,7 @@ module HandleKeys where
                                                                             ,   p1dead = p1dead game
                                                                             ,   p2dead = p2dead game
                                                                             ,   rules = rules game
+                                                                            ,   gameIsOver = gameIsOver game
                                                                             }
                                                                         else
                                                                             Game {
@@ -319,6 +336,7 @@ module HandleKeys where
                                                                             ,   p1dead = p1dead game
                                                                             ,   p2dead = p2dead game
                                                                             ,   rules = rules game
+                                                                            ,   gameIsOver = gameIsOver game
                                                                             }
         
     handleKeys (EventKey (SpecialKey KeyRight) _ _ _) game = if p2dead game && not (p1dead game)
@@ -337,6 +355,7 @@ module HandleKeys where
                                                                     ,   p1dead = p1dead game
                                                                     ,   p2dead = p2dead game
                                                                     ,   rules = rules game
+                                                                    ,   gameIsOver = gameIsOver game
                                                                     }
                                                                 else
                                                                     if p1dead game && p2dead game
@@ -355,6 +374,7 @@ module HandleKeys where
                                                                             ,   p1dead = p1dead game
                                                                             ,   p2dead = p2dead game
                                                                             ,   rules = rules game
+                                                                            ,   gameIsOver = gameIsOver game
                                                                             }
                                                                         else
                                                                             Game {
@@ -371,6 +391,7 @@ module HandleKeys where
                                                                             ,   p1dead = p1dead game
                                                                             ,   p2dead = p2dead game
                                                                             ,   rules = rules game
+                                                                            ,   gameIsOver = gameIsOver game
                                                                             }
         
     handleKeys (EventKey (Char 's') _ _ _) game = if p1dead game && not (p2dead game)
@@ -389,6 +410,7 @@ module HandleKeys where
                                                             ,   p1dead = p1dead game
                                                             ,   p2dead = p2dead game
                                                             ,   rules = rules game
+                                                            ,   gameIsOver = gameIsOver game
                                                             }
                                                         else
                                                             if p1dead game && p2dead game
@@ -407,6 +429,7 @@ module HandleKeys where
                                                                     ,   p1dead = p1dead game
                                                                     ,   p2dead = p2dead game
                                                                     ,   rules = rules game
+                                                                    ,   gameIsOver = gameIsOver game
                                                                     }
                                                                 else
                                                                     Game {
@@ -423,6 +446,7 @@ module HandleKeys where
                                                                     ,   p1dead = p1dead game
                                                                     ,   p2dead = p2dead game
                                                                     ,   rules = rules game
+                                                                    ,   gameIsOver = gameIsOver game
                                                                     }
 
     handleKeys _ game = game
