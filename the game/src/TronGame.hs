@@ -17,8 +17,16 @@ module TronGame where
         , p2Trace :: [Position]
         , p1dead :: Bool
         , p2dead :: Bool
+        , rules :: Int
         } deriving (Show)
 
-    
-    render :: TronGame -> Picture
-    render game = getMap (tronMap game)
+
+    -- Maps:
+    -- 0 is the menu map
+    -- 1 is a simple Map without any disruptions
+    -- 2 is a map with a moving obstacle in the center
+    -- 3 is a map with some random teleports
+
+    -- Rules:
+    -- 1 is normal Tron rules
+    -- 2 is a fun play rule where you can't die

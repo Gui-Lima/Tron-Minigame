@@ -6,6 +6,7 @@ import Actions
 import TronGame
 import HandleKeys
 import Data
+import Images
 
 fps = 30
 background = white
@@ -19,3 +20,7 @@ main = play window background fps initialState render handleKeys update
 
 update :: Float -> TronGame -> TronGame 
 update _ game = menuTeleport $ movePlayer game
+
+render :: TronGame -> Picture
+render game = Pictures [getMap (tronMap game), writeWinner game, writeMenu game]
+

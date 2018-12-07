@@ -37,3 +37,7 @@ module Events where
 
     possibleMovement :: Position -> Map -> Bool
     possibleMovement x m = not (wallCollision x m || traceCollision x m || playerCollision x m)
+
+
+    possibleMovementNoRules ::Position -> Map -> Bool
+    possibleMovementNoRules x m = not (wallCollision x m || playerCollision x m)

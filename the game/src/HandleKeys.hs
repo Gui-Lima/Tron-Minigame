@@ -13,6 +13,7 @@ module HandleKeys where
                                                         then
                                                             Game {
                                                                 tronMap = tronMap game
+                                                            ,   mapId = mapId game
                                                             ,   player1 = player1 game
                                                             ,   player2 = player2 game
                                                             ,   p1xVel =  0
@@ -23,12 +24,14 @@ module HandleKeys where
                                                             ,   p2Trace = p2Trace game
                                                             ,   p1dead = p1dead game
                                                             ,   p2dead = p2dead game
+                                                            ,   rules = rules game
                                                             }
                                                         else
                                                             if p1dead game && p2dead game
                                                                 then
                                                                     Game {
                                                                         tronMap = tronMap game
+                                                                    ,   mapId = mapId game                                                                        
                                                                     ,   player1 = player1 game
                                                                     ,   player2 = player2 game
                                                                     ,   p1xVel =  0
@@ -39,10 +42,12 @@ module HandleKeys where
                                                                     ,   p2Trace = p2Trace game
                                                                     ,   p1dead = p1dead game
                                                                     ,   p2dead = p2dead game
+                                                                    ,   rules = rules game
                                                                     }
                                                                 else
                                                                     Game {
                                                                         tronMap = tronMap game
+                                                                    ,   mapId = mapId game
                                                                     ,   player1 = player1 game
                                                                     ,   player2 = player2 game
                                                                     ,   p1xVel =  0
@@ -53,12 +58,14 @@ module HandleKeys where
                                                                     ,   p2Trace = p2Trace game
                                                                     ,   p1dead = p1dead game
                                                                     ,   p2dead = p2dead game
+                                                                    ,   rules = rules game
                                                                     }
 
     handleKeys (EventKey (Char 'd') _ _ _) game = if p1dead game && not (p2dead game)
                                                         then
                                                             Game {
                                                                 tronMap = tronMap game
+                                                                ,   mapId = mapId game
                                                             ,   player1 = player1 game
                                                             ,   player2 = player2 game
                                                             ,   p1xVel =  0
@@ -69,12 +76,14 @@ module HandleKeys where
                                                             ,   p2Trace = p2Trace game
                                                             ,   p1dead = p1dead game
                                                             ,   p2dead = p2dead game
+                                                            ,   rules = rules game
                                                             }
                                                         else
                                                            if p1dead game && p2dead game
                                                                 then
                                                                     Game {
                                                                         tronMap = tronMap game
+                                                                        ,   mapId = mapId game
                                                                     ,   player1 = player1 game
                                                                     ,   player2 = player2 game
                                                                     ,   p1xVel =  0
@@ -85,10 +94,12 @@ module HandleKeys where
                                                                     ,   p2Trace = p2Trace game
                                                                     ,   p1dead = p1dead game
                                                                     ,   p2dead = p2dead game
+                                                                    ,   rules = rules game
                                                                     }
                                                                 else
                                                                     Game {
                                                                         tronMap = tronMap game
+                                                                        ,   mapId = mapId game
                                                                     ,   player1 = player1 game
                                                                     ,   player2 = player2 game
                                                                     ,   p1xVel =  initialSpeed
@@ -99,12 +110,14 @@ module HandleKeys where
                                                                     ,   p2Trace = p2Trace game
                                                                     ,   p1dead = p1dead game
                                                                     ,   p2dead = p2dead game
+                                                                    ,   rules = rules game
                                                                     }
 
     handleKeys (EventKey (Char 'a') _ _ _) game = if p1dead game && not (p2dead game)
                                                         then
                                                             Game {
                                                                 tronMap = tronMap game
+                                                                ,   mapId = mapId game
                                                             ,   player1 = player1 game
                                                             ,   player2 = player2 game
                                                             ,   p1xVel =  0
@@ -115,12 +128,14 @@ module HandleKeys where
                                                             ,   p2Trace = p2Trace game
                                                             ,   p1dead = p1dead game
                                                             ,   p2dead = p2dead game
+                                                            ,   rules = rules game
                                                             }
                                                         else
                                                             if p1dead game && p2dead game
                                                                 then
                                                                     Game {
                                                                         tronMap = tronMap game
+                                                                        ,   mapId = mapId game
                                                                     ,   player1 = player1 game
                                                                     ,   player2 = player2 game
                                                                     ,   p1xVel =  0
@@ -131,10 +146,12 @@ module HandleKeys where
                                                                     ,   p2Trace = p2Trace game
                                                                     ,   p1dead = p1dead game
                                                                     ,   p2dead = p2dead game
+                                                                    ,   rules = rules game
                                                                     }
                                                                 else
                                                                     Game {
                                                                         tronMap = tronMap game
+                                                                        ,   mapId = mapId game
                                                                     ,   player1 = player1 game
                                                                     ,   player2 = player2 game
                                                                     ,   p1xVel =  -initialSpeed
@@ -145,12 +162,14 @@ module HandleKeys where
                                                                     ,   p2Trace = p2Trace game
                                                                     ,   p1dead = p1dead game
                                                                     ,   p2dead = p2dead game
+                                                                    ,   rules = rules game
                                                                     }
 
     handleKeys (EventKey (SpecialKey KeyUp) _ _ _) game = if p2dead game && not (p1dead game)
                                                                 then
                                                                     Game {
                                                                         tronMap = tronMap game
+                                                                        ,   mapId = mapId game
                                                                     ,   player1 = player1 game
                                                                     ,   player2 = player2 game
                                                                     ,   p1xVel =  p1xVel game
@@ -161,12 +180,14 @@ module HandleKeys where
                                                                     ,   p2Trace = p2Trace game
                                                                     ,   p1dead = p1dead game
                                                                     ,   p2dead = p2dead game
+                                                                    ,   rules = rules game
                                                                     }
                                                                 else
                                                                     if p1dead game && p2dead game
                                                                         then
                                                                             Game {
                                                                                 tronMap = tronMap game
+                                                                                ,   mapId = mapId game
                                                                             ,   player1 = player1 game
                                                                             ,   player2 = player2 game
                                                                             ,   p1xVel =  0
@@ -177,10 +198,12 @@ module HandleKeys where
                                                                             ,   p2Trace = p2Trace game
                                                                             ,   p1dead = p1dead game
                                                                             ,   p2dead = p2dead game
+                                                                            ,   rules = rules game
                                                                             }
                                                                         else
                                                                             Game {
                                                                                 tronMap = tronMap game
+                                                                                ,   mapId = mapId game
                                                                             ,   player1 = player1 game
                                                                             ,   player2 = player2 game
                                                                             ,   p1xVel =  p1xVel game
@@ -191,12 +214,14 @@ module HandleKeys where
                                                                             ,   p2Trace = p2Trace game
                                                                             ,   p1dead = p1dead game
                                                                             ,   p2dead = p2dead game
+                                                                            ,   rules = rules game
                                                                             }
         
     handleKeys (EventKey (SpecialKey KeyDown) _ _ _) game = if p2dead game && not (p1dead game)
                                                                 then
                                                                     Game {
                                                                         tronMap = tronMap game
+                                                                        ,   mapId = mapId game
                                                                     ,   player1 = player1 game
                                                                     ,   player2 = player2 game
                                                                     ,   p1xVel =  p1xVel game
@@ -207,12 +232,14 @@ module HandleKeys where
                                                                     ,   p2Trace = p2Trace game
                                                                     ,   p1dead = p1dead game
                                                                     ,   p2dead = p2dead game
+                                                                    ,   rules = rules game
                                                                     }
                                                                 else
                                                                     if p1dead game && p2dead game
                                                                         then
                                                                             Game {
                                                                                 tronMap = tronMap game
+                                                                                ,   mapId = mapId game
                                                                             ,   player1 = player1 game
                                                                             ,   player2 = player2 game
                                                                             ,   p1xVel =  0
@@ -223,10 +250,12 @@ module HandleKeys where
                                                                             ,   p2Trace = p2Trace game
                                                                             ,   p1dead = p1dead game
                                                                             ,   p2dead = p2dead game
+                                                                            ,   rules = rules game
                                                                             }
                                                                         else
                                                                             Game {
                                                                                 tronMap = tronMap game
+                                                                                ,   mapId = mapId game
                                                                             ,   player1 = player1 game
                                                                             ,   player2 = player2 game
                                                                             ,   p1xVel =  p1xVel game
@@ -237,12 +266,14 @@ module HandleKeys where
                                                                             ,   p2Trace = p2Trace game
                                                                             ,   p1dead = p1dead game
                                                                             ,   p2dead = p2dead game
+                                                                            ,   rules = rules game
                                                                             }
         
     handleKeys (EventKey (SpecialKey KeyLeft) _ _ _) game = if p2dead game && not (p1dead game)
                                                                 then
                                                                     Game {
                                                                         tronMap = tronMap game
+                                                                        ,   mapId = mapId game
                                                                     ,   player1 = player1 game
                                                                     ,   player2 = player2 game
                                                                     ,   p1xVel =  p1xVel game
@@ -253,12 +284,14 @@ module HandleKeys where
                                                                     ,   p2Trace = p2Trace game
                                                                     ,   p1dead = p1dead game
                                                                     ,   p2dead = p2dead game
+                                                                    ,   rules = rules game
                                                                     }
                                                                 else
                                                                     if p1dead game && p2dead game
                                                                         then
                                                                             Game {
                                                                                 tronMap = tronMap game
+                                                                                ,   mapId = mapId game
                                                                             ,   player1 = player1 game
                                                                             ,   player2 = player2 game
                                                                             ,   p1xVel =  0
@@ -269,10 +302,12 @@ module HandleKeys where
                                                                             ,   p2Trace = p2Trace game
                                                                             ,   p1dead = p1dead game
                                                                             ,   p2dead = p2dead game
+                                                                            ,   rules = rules game
                                                                             }
                                                                         else
                                                                             Game {
                                                                                 tronMap = tronMap game
+                                                                                ,   mapId = mapId game
                                                                             ,   player1 = player1 game
                                                                             ,   player2 = player2 game
                                                                             ,   p1xVel =  p1xVel game
@@ -283,12 +318,14 @@ module HandleKeys where
                                                                             ,   p2Trace = p2Trace game
                                                                             ,   p1dead = p1dead game
                                                                             ,   p2dead = p2dead game
+                                                                            ,   rules = rules game
                                                                             }
         
     handleKeys (EventKey (SpecialKey KeyRight) _ _ _) game = if p2dead game && not (p1dead game)
                                                                 then
                                                                     Game {
                                                                         tronMap = tronMap game
+                                                                        ,   mapId = mapId game
                                                                     ,   player1 = player1 game
                                                                     ,   player2 = player2 game
                                                                     ,   p1xVel =  p1xVel game
@@ -299,12 +336,14 @@ module HandleKeys where
                                                                     ,   p2Trace = p2Trace game
                                                                     ,   p1dead = p1dead game
                                                                     ,   p2dead = p2dead game
+                                                                    ,   rules = rules game
                                                                     }
                                                                 else
                                                                     if p1dead game && p2dead game
                                                                         then
                                                                             Game {
                                                                                 tronMap = tronMap game
+                                                                                ,   mapId = mapId game
                                                                             ,   player1 = player1 game
                                                                             ,   player2 = player2 game
                                                                             ,   p1xVel =  0
@@ -315,10 +354,12 @@ module HandleKeys where
                                                                             ,   p2Trace = p2Trace game
                                                                             ,   p1dead = p1dead game
                                                                             ,   p2dead = p2dead game
+                                                                            ,   rules = rules game
                                                                             }
                                                                         else
                                                                             Game {
                                                                                 tronMap = tronMap game
+                                                                                ,   mapId = mapId game
                                                                             ,   player1 = player1 game
                                                                             ,   player2 = player2 game
                                                                             ,   p1xVel =  p1xVel game
@@ -329,12 +370,14 @@ module HandleKeys where
                                                                             ,   p2Trace = p2Trace game
                                                                             ,   p1dead = p1dead game
                                                                             ,   p2dead = p2dead game
+                                                                            ,   rules = rules game
                                                                             }
         
     handleKeys (EventKey (Char 's') _ _ _) game = if p1dead game && not (p2dead game)
                                                         then
                                                             Game {
                                                                 tronMap = tronMap game
+                                                                ,   mapId = mapId game
                                                             ,   player1 = player1 game
                                                             ,   player2 = player2 game
                                                             ,   p1xVel =  0
@@ -345,12 +388,14 @@ module HandleKeys where
                                                             ,   p2Trace = p2Trace game
                                                             ,   p1dead = p1dead game
                                                             ,   p2dead = p2dead game
+                                                            ,   rules = rules game
                                                             }
                                                         else
                                                             if p1dead game && p2dead game
                                                                 then
                                                                     Game {
                                                                         tronMap = tronMap game
+                                                                        ,   mapId = mapId game
                                                                     ,   player1 = player1 game
                                                                     ,   player2 = player2 game
                                                                     ,   p1xVel =  0
@@ -361,10 +406,12 @@ module HandleKeys where
                                                                     ,   p2Trace = p2Trace game
                                                                     ,   p1dead = p1dead game
                                                                     ,   p2dead = p2dead game
+                                                                    ,   rules = rules game
                                                                     }
                                                                 else
                                                                     Game {
                                                                         tronMap = tronMap game
+                                                                        ,   mapId = mapId game
                                                                     ,   player1 = player1 game
                                                                     ,   player2 = player2 game
                                                                     ,   p1xVel =  0
@@ -375,6 +422,7 @@ module HandleKeys where
                                                                     ,   p2Trace = p2Trace game
                                                                     ,   p1dead = p1dead game
                                                                     ,   p2dead = p2dead game
+                                                                    ,   rules = rules game
                                                                     }
 
     handleKeys _ game = game

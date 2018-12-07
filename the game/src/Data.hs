@@ -29,6 +29,7 @@ module Data where
     initialState = Game
         {
             tronMap = menuMap
+        ,   mapId = 0
         ,   player1 = initialPointMap1Player1
         ,   player2 = initialPointMap1Player2
         ,   p1xVel =  initialSpeed
@@ -39,12 +40,14 @@ module Data where
         ,   p2Trace = [initialPointMap1Player2]
         ,   p1dead = False
         ,   p2dead = False
+        ,   rules = 2
         }
 
     map1State :: TronGame
     map1State = Game
         {
             tronMap = simpleMap
+        ,   mapId = 1
         ,   player1 = initialPointMap2Player1
         ,   player2 = initialPointMap2Player2
         ,   p1xVel =  initialSpeed
@@ -55,12 +58,14 @@ module Data where
         ,   p2Trace = [initialPointMap1Player2]
         ,   p1dead = False
         ,   p2dead = False
+        ,   rules = 1
         }
 
     map2State :: TronGame
     map2State = Game
         {
             tronMap = obstacleMap
+        ,   mapId = 2
         ,   player1 = initialPointMap3Player1
         ,   player2 = initialPointMap3Player2
         ,   p1xVel =  initialSpeed
@@ -71,4 +76,5 @@ module Data where
         ,   p2Trace = [initialPointMap1Player2]
         ,   p1dead = False
         ,   p2dead = False
+        ,   rules = 1
         } 
