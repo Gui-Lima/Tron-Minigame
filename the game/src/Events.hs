@@ -26,5 +26,14 @@ module Events where
                                         else
                                             False
 
+
+    
+    teleportCollision :: Position -> Map -> Bool
+    teleportCollision pos map = if getPossible map pos == Teleport1 || getPossible map pos == Teleport2 || getPossible map pos == Teleport3
+                                        then
+                                            True
+                                        else
+                                            False
+
     possibleMovement :: Position -> Map -> Bool
     possibleMovement x m = not (wallCollision x m || traceCollision x m || playerCollision x m)

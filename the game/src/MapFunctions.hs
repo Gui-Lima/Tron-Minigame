@@ -49,3 +49,6 @@ module MapFunctions where
     paint Wall (x,y)= Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $  color black $ rectangleSolid 10 10]
     paint Player1 (x,y)= Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $  color (light blue) $ rectangleSolid 10 10]
     paint Player2 (x,y) = Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $  color (light red) $ rectangleSolid 10 10]
+    paint Teleport1 (x,y) = Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $  color magenta $ rectangleSolid 10 10]
+    paint Teleport2 (x,y) = Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $  color orange $ rectangleSolid 10 10]
+    paint Teleport3 (x,y) = Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $  color green $ rectangleSolid 10 10]

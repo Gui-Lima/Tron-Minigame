@@ -4,6 +4,8 @@ module HandleKeys where
     import Graphics.Gloss.Interface.Pure.Game
     import Map
     import TronGame
+    import Data
+
 
     handleKeys :: Event -> TronGame -> TronGame
     handleKeys (EventKey (Char 'r') _ _ _) game = initialState

@@ -3,6 +3,9 @@ module Types where
     type Player1 = (Int, Int)
     type Player2 = (Int, Int)
     type PowerUp = (Int, Int)
+    type Teleport1 = (Int, Int)
+    type Teleport2 = (Int, Int)
+    type Teleport3 = (Int, Int)
     type Trace1 = (Int, Int)
     type Trace2 = (Int, Int)
     type Nada = (Int, Int)
@@ -10,4 +13,4 @@ module Types where
     type Map = [[Possible]]
     type CoordMap = [[Position]]
 
-    data Possible = Wall | Player1 | Player2 | PowerUp | Trace1 | Trace2 | Nada deriving (Eq, Show)
+    data Possible = Wall | Player1 | Player2 | PowerUp | Trace1 | Trace2 | Teleport1 | Teleport2 | Teleport3 | Nada deriving (Eq, Show)

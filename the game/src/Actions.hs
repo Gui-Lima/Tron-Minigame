@@ -5,6 +5,21 @@ module Actions where
     import Map
     import MapFunctions
     import Events
+    import Data
+
+    menuTeleport :: TronGame -> TronGame
+    menuTeleport game = if teleportCollision p1Move momentMap
+                                then
+                                    if (getPossible momentMap p1Move) == Teleport1
+                                        then map1State
+                                    else
+                                        map2State
+                        else
+                            game
+            where
+                momentMap = tronMap game
+                (x,y) = player1 game
+                p1Move = ((x + p1xVel game)  , (y + p1yVel game))
 
     movePlayer :: TronGame -> TronGame
     movePlayer game = Game {
