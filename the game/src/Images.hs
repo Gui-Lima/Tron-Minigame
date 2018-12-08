@@ -8,7 +8,7 @@ module Images where
     writeWinner :: TronGame -> Picture
     writeWinner game = if draw 
                             then    
-                                translate (-250) 150 $ text "Draw!"
+                                translate (-250) 150 $ text "DRAW!"
                         else
                             if overp1Won
                                 then 
@@ -20,9 +20,9 @@ module Images where
                                 else
                                         Pictures []
                 where           
-                    overp1Won = gameIsOver game == 1
-                    overp2Won = gameIsOver game == 2
-                    draw      = gameIsOver game == 3
+                    overp1Won = (gameIsOver game) == 1
+                    overp2Won = (gameIsOver game) == 2
+                    draw      = (gameIsOver game) == 3
 
     
     writeMenu :: TronGame -> Picture

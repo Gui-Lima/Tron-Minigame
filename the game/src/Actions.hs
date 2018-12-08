@@ -16,60 +16,7 @@ module Actions where
                                     then
                                         Game{
                                             tronMap = tronMap game
-                                        ,   mapId = mapId game
-                                        ,   player1 = player1 game
-                                        ,   player2 = player2 game
-                                        ,   p1xVel = p1xVel game
-                                        ,   p1yVel = p1yVel game
-                                        ,   p2xVel = p2xVel game
-                                        ,   p2yVel = p2yVel game
-                                        ,   p1Trace = p1Trace game
-                                        ,   p2Trace = p2Trace game
-                                        ,   p1dead = True
-                                        ,   p2dead = True
-                                        ,   rules = 2
-                                        ,   gameIsOver = 3
-                                        }
-                                    else
-                                        Game{
-                                            tronMap = tronMap game
-                                        ,   mapId = mapId game
-                                        ,   player1 = player1 game
-                                        ,   player2 = player2 game
-                                        ,   p1xVel = p1xVel game
-                                        ,   p1yVel = p1yVel game
-                                        ,   p2xVel = p2xVel game
-                                        ,   p2yVel = p2yVel game
-                                        ,   p1Trace = p1Trace game
-                                        ,   p2Trace = p2Trace game
-                                        ,   p1dead = True
-                                        ,   p2dead = False
-                                        ,   rules = 2
-                                        ,   gameIsOver = 2
-                                        }
-                            else
-                                if p2Death
-                                    then 
-                                        Game{
-                                            tronMap = tronMap game
-                                        ,   mapId = mapId game
-                                        ,   player1 = player1 game
-                                        ,   player2 = player2 game
-                                        ,   p1xVel = p1xVel game
-                                        ,   p1yVel = p1yVel game
-                                        ,   p2xVel = p2xVel game
-                                        ,   p2yVel = p2yVel game
-                                        ,   p1Trace = p1Trace game
-                                        ,   p2Trace = p2Trace game
-                                        ,   p1dead = False
-                                        ,   p2dead = True
-                                        ,   rules = 2
-                                        ,   gameIsOver = 1
-                                        }
-
-                                    else
-                                        Game{
-                                            tronMap = tronMap game
+                                        ,   scoreMap = scoreMap game
                                         ,   mapId = mapId game
                                         ,   player1 = player1 game
                                         ,   player2 = player2 game
@@ -81,9 +28,50 @@ module Actions where
                                         ,   p2Trace = p2Trace game
                                         ,   p1dead = p1dead game
                                         ,   p2dead = p2dead game
-                                        ,   rules = rules game
-                                        ,   gameIsOver = 0
+                                        ,   rules = 2
+                                        ,   gameIsOver = 3
                                         }
+                                    else
+                                        Game{
+                                            tronMap = tronMap game
+                                        ,   scoreMap = scoreMap game
+                                        ,   mapId = mapId game
+                                        ,   player1 = player1 game
+                                        ,   player2 = player2 game
+                                        ,   p1xVel = p1xVel game
+                                        ,   p1yVel = p1yVel game
+                                        ,   p2xVel = p2xVel game
+                                        ,   p2yVel = p2yVel game
+                                        ,   p1Trace = p1Trace game
+                                        ,   p2Trace = p2Trace game
+                                        ,   p1dead = p1dead game
+                                        ,   p2dead = p2dead game
+                                        ,   rules = 2
+                                        ,   gameIsOver = 2
+                                        }
+                            else
+                                if p2Death
+                                    then 
+                                        Game{
+                                            tronMap = tronMap game
+                                        ,   scoreMap = scoreMap game
+                                        ,   mapId = mapId game
+                                        ,   player1 = player1 game
+                                        ,   player2 = player2 game
+                                        ,   p1xVel = p1xVel game
+                                        ,   p1yVel = p1yVel game
+                                        ,   p2xVel = p2xVel game
+                                        ,   p2yVel = p2yVel game
+                                        ,   p1Trace = p1Trace game
+                                        ,   p2Trace = p2Trace game
+                                        ,   p1dead = p1dead game
+                                        ,   p2dead = p2dead game
+                                        ,   rules = 2
+                                        ,   gameIsOver = 1
+                                        }
+
+                                    else
+                                        game
             where
                 p2Death = p2dead game
                 p1Death = p1dead game
@@ -106,10 +94,11 @@ module Actions where
                 p1Move = ((x + p1xVel game)  , (y + p1yVel game))
 
     movePlayer :: TronGame -> TronGame
-    movePlayer game = if rules game == 1
+    movePlayer game = if (rules game) == 1
                             then    
                                 Game {
                                         tronMap = newMap
+                                    ,   scoreMap = scoreMap game
                                     ,   mapId = mapId game
                                     ,   player1 = p1NewPos
                                     ,   player2 = p2NewPos
@@ -121,12 +110,13 @@ module Actions where
                                     ,   p2Trace = p2NewPos : (p2Trace game)
                                     ,   p1dead = newStatus1
                                     ,   p2dead = newStatus2
-                                    ,   rules = 1
+                                    ,   rules = rules game
                                     ,   gameIsOver = gameIsOver game
                                     }
                             else
                                 Game {
                                         tronMap = newMapNoRules
+                                    ,   scoreMap = scoreMap game
                                     ,   mapId = mapId game
                                     ,   player1 = p1NewPosNoRules
                                     ,   player2 = p2NewPosNoRules
@@ -138,7 +128,7 @@ module Actions where
                                     ,   p2Trace = p2NewPosNoRules : (p2Trace game)
                                     ,   p1dead = p1dead game
                                     ,   p2dead = p1dead game
-                                    ,   rules = 2
+                                    ,   rules = rules game
                                     ,   gameIsOver = gameIsOver game
                                     }
                                     where

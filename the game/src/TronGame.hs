@@ -6,6 +6,7 @@ module TronGame where
 
     data TronGame = Game    
         { tronMap :: Map
+        , scoreMap :: Map
         , mapId   :: Int
         , player1 :: Position
         , player2 :: Position 

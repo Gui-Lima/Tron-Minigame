@@ -29,6 +29,7 @@ module Data where
     initialState = Game
         {
             tronMap = menuMap
+        ,   scoreMap = barrinhaMap
         ,   mapId = 0
         ,   player1 = initialPointMap1Player1
         ,   player2 = initialPointMap1Player2
@@ -48,6 +49,7 @@ module Data where
     map1State = Game
         {
             tronMap = simpleMap
+        ,   scoreMap = barrinhaMap
         ,   mapId = 1
         ,   player1 = initialPointMap2Player1
         ,   player2 = initialPointMap2Player2
@@ -67,6 +69,7 @@ module Data where
     map2State = Game
         {
             tronMap = obstacleMap
+        ,   scoreMap = barrinhaMap
         ,   mapId = 2
         ,   player1 = initialPointMap3Player1
         ,   player2 = initialPointMap3Player2
@@ -87,6 +90,7 @@ module Data where
     map3State = Game
         {
             tronMap = teleportMap
+        ,   scoreMap = barrinhaMap
         ,   mapId = 3
         ,   player1 = initialPointMap3Player1
         ,   player2 = initialPointMap3Player2

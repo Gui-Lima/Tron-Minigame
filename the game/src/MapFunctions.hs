@@ -3,16 +3,17 @@ module MapFunctions where
     import Map
     import Types
     
-    
 
     getPoint :: (Int, Int) -> (Float, Float)
-    getPoint (x,y) = (-const + offsetX, const - offsetY)
+    getPoint (x,y) = (-constX + offsetX, constY - offsetY)
         where
-            floatedMapSize = fromIntegral mapSize
+            floatedMapSizeX = fromIntegral (fst mapSize)
+            floatedMapSizeY = fromIntegral (snd mapSize)
             floatedGridSize = fromIntegral gridSize
             floatedX = fromIntegral x
             floatedY = fromIntegral y
-            const = ((floatedMapSize * floatedGridSize)/2) - (floatedGridSize/2)
+            constX = ((floatedMapSizeX * floatedGridSize)/2) - (floatedGridSize/2)
+            constY = ((floatedMapSizeY * floatedGridSize)/2) - (floatedGridSize/2)
             offsetX = floatedX * floatedGridSize
             offsetY = floatedY * floatedGridSize
 
@@ -20,8 +21,8 @@ module MapFunctions where
     getPossible :: Map -> Position -> Possible
     getPossible n (x,y) = (n !!  y) !! x
 
-    getMap :: Map -> Picture
-    getMap map = renderMap map mapCoords
+    getMap :: Map -> CoordMap -> Picture
+    getMap map cMap= renderMap map cMap
 
     setPossiblesInPositions :: Map -> [Position] -> [Possible] -> Map
     setPossiblesInPositions m [] _ = m
@@ -44,11 +45,11 @@ module MapFunctions where
 
     paint :: Possible -> Position -> Picture
     paint Nada (x,y) = Pictures []
-    paint Trace1 (x,y) = Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $ color blue $ rectangleSolid 10 10]
-    paint Trace2 (x,y) = Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $ color red $ rectangleSolid 10 10]
+    paint Trace1 (x,y) = Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $ color (light (light blue)) $ rectangleSolid 10 10]
+    paint Trace2 (x,y) = Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $ color (light (light red)) $ rectangleSolid 10 10]
     paint Wall (x,y)= Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $  color black $ rectangleSolid 10 10]
-    paint Player1 (x,y)= Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $  color (light blue) $ rectangleSolid 10 10]
-    paint Player2 (x,y) = Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $  color (light red) $ rectangleSolid 10 10]
+    paint Player1 (x,y)= Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $  color blue $ rectangleSolid 10 10]
+    paint Player2 (x,y) = Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $  color red $ rectangleSolid 10 10]
     paint Teleport1 (x,y) = Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $  color magenta $ rectangleSolid 10 10]
     paint Teleport2 (x,y) = Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $  color orange $ rectangleSolid 10 10]
     paint Teleport3 (x,y) = Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $  color green $ rectangleSolid 10 10]

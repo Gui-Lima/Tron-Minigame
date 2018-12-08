@@ -1,10 +1,10 @@
 size = 70
 map = "["
 
-for i in range(size):
+for i in range(74):
     map+=("[")
-    for j in range(size):
-        map+=("("+str(j)+","+str(i)+"), ")
+    for j in range(8):
+        map+=("("+str(j-8)+","+str(i)+"), ")
     map = map[:-2]
     map+=("],")
     map+=("\n")
