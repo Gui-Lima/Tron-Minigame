@@ -6,7 +6,125 @@ module Actions where
     import MapFunctions
     import Events
     import Data
+    import Control.Concurrent
 
+    teleportPlayer1 :: TronGame -> TronGame
+    teleportPlayer1 game = Game {
+                                        tronMap = tronMap game
+                                    ,   mapId = mapId game
+                                    ,   player1 = (3,3)
+                                    ,   player2 = player2 game
+                                    ,   p1xVel  = p1xVel game
+                                    ,   p1yVel  = p1yVel game
+                                    ,   p2xVel  = p2xVel game
+                                    ,   p2yVel  = p2yVel game
+                                    ,   p1Trace = (3,3) : (p1Trace game)
+                                    ,   p2Trace = (p2Trace game)
+                                    ,   p1dead = p1dead game
+                                    ,   p2dead = p2dead game
+                                    ,   rules = rules game
+                                    ,   gameIsOver = gameIsOver game
+                                    }
+
+
+    teleportPlayer2 :: TronGame -> TronGame
+    teleportPlayer2 game = Game {
+                                        tronMap = tronMap game
+                                    ,   mapId = mapId game
+                                    ,   player1 = player1 game
+                                    ,   player2 = (5,5)
+                                    ,   p1xVel  = p1xVel game
+                                    ,   p1yVel  = p1yVel game
+                                    ,   p2xVel  = p2xVel game
+                                    ,   p2yVel  = p2yVel game
+                                    ,   p1Trace = (p1Trace game)
+                                    ,   p2Trace = (5,5) : (p2Trace game)
+                                    ,   p1dead = p1dead game
+                                    ,   p2dead = p2dead game
+                                    ,   rules = rules game
+                                    ,   gameIsOver = gameIsOver game
+                                    }
+
+    mapTeleport :: TronGame -> (MVar Bool) -> (MVar Bool) -> (MVar Bool)-> IO TronGame
+    mapTeleport game t1var t2var t3var      = do
+                                                t1 <- takeMVar t1var
+                                                t2 <- takeMVar t2var
+                                                t3 <- takeMVar t3var
+                                                if teleportMapCollision p1 (tronMap game)
+                                                            then
+                                                                if getPossible (tronMap game) p1 == Teleportoso1 && t1 == False
+                                                                    then
+                                                                        do
+                                                                            putMVar t1var True
+                                                                            putMVar t2var False
+                                                                            putMVar t3var False
+                                                                            return (teleportPlayer1 game)
+                                                                    else
+                                                                        if getPossible (tronMap game) p1 == Teleportoso2 && t2 == False
+                                                                            then
+                                                                                do
+                                                                                    putMVar t2var True
+                                                                                    putMVar t1var False
+                                                                                    putMVar t3var False
+                                                                                    return (teleportPlayer1 game)
+                                                                        else
+                                                                            if getPossible (tronMap game) p1 == Teleportoso3 && t3 == False
+                                                                                then
+                                                                                    do
+                                                                                        putMVar t3var True
+                                                                                        putMVar t1var False
+                                                                                        putMVar t2var False
+                                                                                        return (teleportPlayer1 game)
+                                                                                else
+                                                                                    do
+                                                                                        putMVar t3var False
+                                                                                        putMVar t1var False
+                                                                                        putMVar t2var False
+                                                                                        return game
+                                                                            
+                                                        else
+                                                            if teleportMapCollision p2 (tronMap game)
+                                                                then
+                                                                    if getPossible (tronMap game) p2 == Teleportoso1 && t1 == False
+                                                                        then
+                                                                            do
+                                                                                putMVar t3var False
+                                                                                putMVar t1var True
+                                                                                putMVar t2var False
+                                                                                return (teleportPlayer2 game)
+                                                                        else
+                                                                            if getPossible (tronMap game) p2 == Teleportoso2 && t2 == False
+                                                                                then
+                                                                                    do
+                                                                                        putMVar t3var False
+                                                                                        putMVar t1var False
+                                                                                        putMVar t2var True
+                                                                                        return (teleportPlayer2 game)
+                                                                            else
+                                                                                if getPossible (tronMap game) p2 == Teleportoso3 && t3 == False
+                                                                                    then
+                                                                                        do
+                                                                                            putMVar t3var True
+                                                                                            putMVar t1var False
+                                                                                            putMVar t2var False
+                                                                                            return (teleportPlayer2 game)
+                                                                                    else
+                                                                                        do
+                                                                                            putMVar t3var False
+                                                                                            putMVar t1var False
+                                                                                            putMVar t2var False
+                                                                                            return game
+                                                            else
+                                                                do
+                                                                    putMVar t1var False
+                                                                    putMVar t2var False
+                                                                    putMVar t3var False
+                                                                    return game
+                                                                
+            where 
+                futureGame = movePlayer game
+                p1 = player1 futureGame
+                p2 = player2 futureGame
 
 
     endGame :: TronGame -> TronGame

@@ -27,6 +27,12 @@ module Events where
                                             False
 
 
+    teleportMapCollision :: Position -> Map -> Bool
+    teleportMapCollision pos map = if getPossible map pos == Teleportoso1 || getPossible map pos == Teleportoso2 || getPossible map pos == Teleportoso3
+                                            then
+                                                True
+                                            else
+                                                False
     
     teleportCollision :: Position -> Map -> Bool
     teleportCollision pos map = if getPossible map pos == Teleport1 || getPossible map pos == Teleport2 || getPossible map pos == Teleport3

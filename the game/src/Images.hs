@@ -25,6 +25,8 @@ module Images where
                     draw      = (gameIsOver game) == 3
 
     
+
+    
     writeMenu :: TronGame -> Picture
     writeMenu game = if mapId game == 0
                         then

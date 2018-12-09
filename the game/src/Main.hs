@@ -20,12 +20,14 @@ window :: Display
 window = InWindow "TRoN" (1280, 720) (10, 10)
 
 main = do 
-        p1Control <- newMVar initialSpeed
-        playIO window background fps (initialState, p1Control) render handleKeys update
+        t1Control <- newMVar False
+        t2Control <- newMVar False
+        t3Control <- newMVar False
+        playIO window background fps (initialState, t1Control, t2Control, t3Control) render handleKeys update
 
-update :: Float -> (TronGame, (MVar Int)) -> IO (TronGame, (MVar Int)) 
-update _ (game, p1Control) = return (endGame $ menuTeleport $ movePlayer game, p1Control)
-
-render :: (TronGame, (MVar Int)) -> IO Picture
-render (game, _) = return $ Pictures [getMap (tronMap game) mapCoords, writeWinner game, writeMenu game]
-
+update :: Float -> (TronGame, (MVar Bool), (MVar Bool), (MVar Bool)) -> IO (TronGame, (MVar Bool), (MVar Bool), (MVar Bool)) 
+update _ (game, t1Control, t2Control, t3Control) = do
+                                                        x <- mapTeleport(endGame $ menuTeleport $ movePlayer game) t1Control t2Control t3Control
+                                                        return (x, t1Control, t2Control, t3Control)
+render :: (TronGame, (MVar Bool), (MVar Bool), (MVar Bool)) -> IO Picture
+render (game, _,_,_) = return $ Pictures [getMap (tronMap game) mapCoords, writeWinner game, writeMenu game]
