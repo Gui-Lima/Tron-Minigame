@@ -140,33 +140,57 @@ module Actions where
                                                             then
                                                                 (p1movementX, p1movementY)
                                                             else
-                                                                (x, y)
+                                                                if possibleMovement (newTrace (x,y) (p1movementX, p1movementY)) (tronMap game)
+                                                                    then
+                                                                        (newTrace (x,y) (p1movementX, p1movementY))
+                                                                    else
+                                                                        (x,y)
                                         p2NewPos = if possibleMovement (p2movementX, p2movementY) (tronMap game)
                                                             then
                                                                 (p2movementX, p2movementY)
                                                             else
-                                                                (u, v)
+                                                                if possibleMovement (newTrace (u,v) (p2movementX, p2movementY)) (tronMap game)
+                                                                    then
+                                                                        (newTrace (u,v) (p2movementX, p2movementY))
+                                                                    else
+                                                                        (u,v)
                                         p1NewPosNoRules = if possibleMovementNoRules (p1movementX, p1movementY)  (tronMap game)
                                                             then
                                                                 (p1movementX, p1movementY)
                                                             else
-                                                                (x, y)
+                                                                if possibleMovementNoRules (newTrace (x,y) (p1movementX, p1movementY)) (tronMap game)
+                                                                    then
+                                                                        (newTrace (x,y) (p1movementX, p1movementY))
+                                                                    else
+                                                                        (x,y)
                                         p2NewPosNoRules = if possibleMovementNoRules (p2movementX, p2movementY) (tronMap game)
                                                             then
                                                                 (p2movementX, p2movementY)
                                                             else
-                                                                (u, v)
+                                                                if possibleMovementNoRules (newTrace (u,v) (p2movementX, p2movementY)) (tronMap game)
+                                                                    then
+                                                                        (newTrace (u,v) (p2movementX, p2movementY))
+                                                                    else
+                                                                        (u,v)
                                         
                                         newStatus1 = if possibleMovement (p1movementX, p1movementY) (tronMap game)
                                                             then
                                                                 False
                                                             else
-                                                                True 
+                                                                if possibleMovement (newTrace (x,y) (p1movementX, p1movementY)) (tronMap game)
+                                                                    then
+                                                                        False
+                                                                    else
+                                                                        True
                                         newStatus2 = if possibleMovement (p2movementX, p2movementY) (tronMap game)
                                                             then
                                                                 False
                                                             else
-                                                                True
+                                                                if possibleMovement (newTrace (u,v) (p2movementX, p2movementY)) (tronMap game)
+                                                                    then
+                                                                        False
+                                                                    else
+                                                                        True
                                         newMap = if initialSpeed == 1
                                                         then
                                                             setPossiblesInPositions  (tronMap game) [(player1 game), (player2 game), p1NewPos, p2NewPos] [Trace1, Trace2, Player1, Player2]

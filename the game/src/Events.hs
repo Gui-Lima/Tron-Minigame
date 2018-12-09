@@ -35,9 +35,12 @@ module Events where
                                         else
                                             False
 
+    outOfBounds :: Position -> Map -> Bool
+    outOfBounds (x,y) map = (x<0 || x>69 || y < 0 || y > 69)
+
     possibleMovement :: Position -> Map -> Bool
-    possibleMovement x m = not (wallCollision x m || traceCollision x m || playerCollision x m)
+    possibleMovement x m = not (outOfBounds x m) && not (wallCollision x m || traceCollision x m || playerCollision x m)
 
 
     possibleMovementNoRules ::Position -> Map -> Bool
-    possibleMovementNoRules x m = not (wallCollision x m || playerCollision x m)
+    possibleMovementNoRules x m = not (outOfBounds x m ) && not (wallCollision x m || playerCollision x m)
