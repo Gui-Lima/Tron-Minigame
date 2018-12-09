@@ -27,5 +27,5 @@ update :: Float -> (TronGame, (MVar Int)) -> IO (TronGame, (MVar Int))
 update _ (game, p1Control) = return (endGame $ menuTeleport $ movePlayer game, p1Control)
 
 render :: (TronGame, (MVar Int)) -> IO Picture
-render (game, _) = return $ Pictures [getMap (scoreMap game) barrinaMapCoord, getMap (tronMap game) mapCoords, writeWinner game, writeMenu game]
+render (game, _) = return $ Pictures [getMap (tronMap game) mapCoords, writeWinner game, writeMenu game]
 

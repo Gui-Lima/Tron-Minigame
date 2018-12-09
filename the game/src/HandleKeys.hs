@@ -14,7 +14,6 @@ module HandleKeys where
                                                                 putMVar p1Control (v)
                                                                 return (Game {
                                                                         tronMap = tronMap game
-                                                                    ,   scoreMap = scoreMap game
                                                                     ,   mapId = mapId game
                                                                     ,   player1 = player1 game
                                                                     ,   player2 = player2 game
@@ -35,7 +34,6 @@ module HandleKeys where
                                                                 putMVar p1Control (v)
                                                                 return (Game {
                                                                         tronMap = tronMap game
-                                                                    ,   scoreMap = scoreMap game
                                                                     ,   mapId = mapId game
                                                                     ,   player1 = player1 game
                                                                     ,   player2 = player2 game
@@ -56,7 +54,6 @@ module HandleKeys where
                                                                     putMVar p1Control (v)
                                                                     return (Game {
                                                                         tronMap = tronMap game
-                                                                    ,   scoreMap = scoreMap game
                                                                     ,   mapId = mapId game
                                                                     ,   player1 = player1 game
                                                                     ,   player2 = player2 game
@@ -77,7 +74,6 @@ module HandleKeys where
                                                                             putMVar p1Control (v)
                                                                             return (Game {
                                                                                 tronMap = tronMap game
-                                                                            ,   scoreMap = scoreMap game
                                                                             ,   mapId = mapId game
                                                                             ,   player1 = player1 game
                                                                             ,   player2 = player2 game
@@ -98,7 +94,6 @@ module HandleKeys where
                                                                             putMVar p1Control (v)
                                                                             return (Game {
                                                                                 tronMap = tronMap game
-                                                                            ,   scoreMap = scoreMap game
                                                                             ,   mapId = mapId game
                                                                             ,   player1 = player1 game
                                                                             ,   player2 = player2 game
@@ -119,7 +114,6 @@ module HandleKeys where
                                                                             putMVar p1Control (v)
                                                                             return (Game {
                                                                                 tronMap = tronMap game
-                                                                            ,   scoreMap = scoreMap game
                                                                             ,   mapId = mapId game
                                                                             ,   player1 = player1 game
                                                                             ,   player2 = player2 game
@@ -140,7 +134,6 @@ module HandleKeys where
                                                                             putMVar p1Control (v)
                                                                             return (Game {
                                                                                 tronMap = tronMap game
-                                                                            ,   scoreMap = scoreMap game
                                                                             ,   mapId = mapId game
                                                                             ,   player1 = player1 game
                                                                             ,   player2 = player2 game
@@ -161,7 +154,6 @@ module HandleKeys where
                                                                     putMVar p1Control (v)
                                                                     return (Game {
                                                                         tronMap = tronMap game
-                                                                    ,   scoreMap = scoreMap game
                                                                     ,   mapId = mapId game
                                                                     ,   player1 = player1 game
                                                                     ,   player2 = player2 game
