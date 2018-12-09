@@ -3,6 +3,7 @@ module TronGame where
     import Types
     import MapFunctions
     import Map
+    import Control.Concurrent
 
     data TronGame = Game    
         { tronMap :: Map
@@ -10,17 +11,17 @@ module TronGame where
         , mapId   :: Int
         , player1 :: Position
         , player2 :: Position 
-        , p1xVel :: Int
-        , p2xVel :: Int
-        , p1yVel :: Int
-        , p2yVel :: Int
+        , p1xVel ::  Int
+        , p2xVel ::  Int
+        , p1yVel ::  Int
+        , p2yVel ::  Int
         , p1Trace :: [Position]
         , p2Trace :: [Position]
         , p1dead :: Bool
         , p2dead :: Bool
         , rules :: Int
         , gameIsOver :: Int
-        } deriving (Show)
+        }
 
 
     -- Maps:

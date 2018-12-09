@@ -167,5 +167,21 @@ module Actions where
                                                                 False
                                                             else
                                                                 True
-                                        newMap = setPossiblesInPositions  (tronMap game) [(player1 game), (player2 game), p1NewPos, p2NewPos] [Trace1, Trace2, Player1, Player2]
-                                        newMapNoRules = setPossiblesInPositions  (tronMap game) [(player1 game), (player2 game), p1NewPosNoRules, p2NewPosNoRules] [Trace1, Trace2, Player1, Player2]
+                                        newMap = if initialSpeed == 1
+                                                        then
+                                                            setPossiblesInPositions  (tronMap game) [(player1 game), (player2 game), p1NewPos, p2NewPos] [Trace1, Trace2, Player1, Player2]
+                                                        else
+                                                            setPossiblesInPositions (tronMap game) [(player1 game), (newTrace (x,y) p1NewPos), (player2 game), (newTrace (u,v) p2NewPos), p1NewPos, p2NewPos] [Trace1, Trace1, Trace2, Trace2, Player1, Player2]
+                                        newMapNoRules = if initialSpeed == 1
+                                                            then
+                                                                setPossiblesInPositions  (tronMap game) [(player1 game), (player2 game), p1NewPosNoRules, p2NewPosNoRules] [Trace1, Trace2, Player1, Player2]
+                                                            else
+                                                                setPossiblesInPositions (tronMap game) [(player1 game), (newTrace (x,y) p1NewPosNoRules), (player2 game), (newTrace (u,v) p2NewPosNoRules), p1NewPosNoRules, p2NewPosNoRules] [Trace1, Trace1, Trace2, Trace2, Player1, Player2]
+
+    newTrace :: Position -> Position -> Position
+    newTrace (x,y) (u,v)
+                        |  x-u > 0 = ((u-1)+(x-u),v)
+                        |  x-u < 0 = ((x-1)+(u-x),v)
+                        |  y-v > 0 = (u,(v-1)+(y-v))
+                        |  y-v < 0 = (u,(y-1)+(v-y))
+                        | otherwise = (x,y)

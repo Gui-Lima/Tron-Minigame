@@ -1,7 +1,9 @@
 module Types where
+    import Control.Concurrent
+
     type Wall = (Int, Int)
-    type Player1 = (Int, Int)
-    type Player2 = (Int, Int)
+    type Player1 = MVar (Int, Int)
+    type Player2 = MVar (Int, Int)
     type PowerUp = (Int, Int)
     type Teleport1 = (Int, Int)
     type Teleport2 = (Int, Int)

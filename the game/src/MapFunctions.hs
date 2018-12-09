@@ -44,12 +44,12 @@ module MapFunctions where
     renderLine n@(x:xs) m@(y:ys) = Pictures [paint x y, renderLine xs ys]
 
     paint :: Possible -> Position -> Picture
-    paint Nada (x,y) = Pictures []
-    paint Trace1 (x,y) = Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $ color (light (light blue)) $ rectangleSolid 10 10]
-    paint Trace2 (x,y) = Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $ color (light (light red)) $ rectangleSolid 10 10]
-    paint Wall (x,y)= Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $  color black $ rectangleSolid 10 10]
-    paint Player1 (x,y)= Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $  color blue $ rectangleSolid 10 10]
-    paint Player2 (x,y) = Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $  color red $ rectangleSolid 10 10]
+    paint Nada (x,y) =      Pictures []
+    paint Trace1 (x,y) =    Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $ color (light (light blue)) $ rectangleSolid 10 10]
+    paint Trace2 (x,y) =    Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $ color (light (light red)) $ rectangleSolid 10 10]
+    paint Wall (x,y)=       Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $  color black $ rectangleSolid 10 10]
+    paint Player1 (x,y)=    Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $  color blue $ rectangleSolid 10 10]
+    paint Player2 (x,y) =   Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $  color red $ rectangleSolid 10 10]
     paint Teleport1 (x,y) = Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $  color magenta $ rectangleSolid 10 10]
     paint Teleport2 (x,y) = Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $  color orange $ rectangleSolid 10 10]
     paint Teleport3 (x,y) = Pictures [translate (fst (getPoint (x,y))) (snd (getPoint (x,y))) $  color green $ rectangleSolid 10 10]

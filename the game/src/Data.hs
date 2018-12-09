@@ -2,6 +2,7 @@ module Data where
     import Types
     import TronGame
     import Map
+    import Control.Concurrent
 
     initialPointMap1Player1 :: Position
     initialPointMap1Player1 = (1,1)
@@ -22,7 +23,7 @@ module Data where
     initialPointMap3Player2 = (60, 60)
 
     initialSpeed :: Int
-    initialSpeed = 1
+    initialSpeed = 2
 
 
     initialState :: TronGame
