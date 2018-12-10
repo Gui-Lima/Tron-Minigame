@@ -7,43 +7,47 @@ module Actions where
     import Events
     import Data
     import Control.Concurrent
+    import Utility
 
     teleportPlayer1 :: TronGame -> TronGame
     teleportPlayer1 game = Game {
                                         tronMap = tronMap game
                                     ,   mapId = mapId game
-                                    ,   player1 = (3,3)
+                                    ,   player1 = makeRandom (x,y)
                                     ,   player2 = player2 game
                                     ,   p1xVel  = p1xVel game
                                     ,   p1yVel  = p1yVel game
                                     ,   p2xVel  = p2xVel game
                                     ,   p2yVel  = p2yVel game
-                                    ,   p1Trace = (3,3) : (p1Trace game)
+                                    ,   p1Trace = makeRandom (x,y) : (p1Trace game)
                                     ,   p2Trace = (p2Trace game)
                                     ,   p1dead = p1dead game
                                     ,   p2dead = p2dead game
                                     ,   rules = rules game
                                     ,   gameIsOver = gameIsOver game
                                     }
-
+            where 
+                (x,y) = player1 game
 
     teleportPlayer2 :: TronGame -> TronGame
     teleportPlayer2 game = Game {
                                         tronMap = tronMap game
                                     ,   mapId = mapId game
                                     ,   player1 = player1 game
-                                    ,   player2 = (5,5)
+                                    ,   player2 = makeRandom (x,y)
                                     ,   p1xVel  = p1xVel game
                                     ,   p1yVel  = p1yVel game
                                     ,   p2xVel  = p2xVel game
                                     ,   p2yVel  = p2yVel game
                                     ,   p1Trace = (p1Trace game)
-                                    ,   p2Trace = (5,5) : (p2Trace game)
+                                    ,   p2Trace = makeRandom (x,y) : (p2Trace game)
                                     ,   p1dead = p1dead game
                                     ,   p2dead = p2dead game
                                     ,   rules = rules game
                                     ,   gameIsOver = gameIsOver game
                                     }
+                where 
+                    (x,y) = player2 game
 
     mapTeleport :: TronGame -> (MVar Bool) -> (MVar Bool) -> (MVar Bool)-> IO TronGame
     mapTeleport game t1var t2var t3var      = do
